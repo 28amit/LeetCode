@@ -4,23 +4,18 @@ public:
         unordered_map<int,int>mp;
         int n=nums.size();
         for(int i=0;i<n;i++){
-            mp[nums[i]]=1;
+            mp[nums[i]]++;
         }
-        
         int ans=0;
-        for(auto i : mp){
-            int num=i.first;
-            int parent=num-1;
-            if(mp.find(parent)==mp.end()){
-                int next=num+1;
-                int cnt=1;
-                while(mp.find(next)!=mp.end()){
-                    next++;
-                    cnt++; 
+        for(int i=0;i<n;i++){
+            if(mp[nums[i]-1]<=0){
+                int tmp=nums[i];
+                int anstmp=0;
+                while(mp[tmp]>=1){
+                    anstmp++;
+                    tmp++;
                 }
-                if(cnt>ans){
-                    ans=cnt; 
-                }
+                ans=max(ans,anstmp);
             }
         }
         return ans;
