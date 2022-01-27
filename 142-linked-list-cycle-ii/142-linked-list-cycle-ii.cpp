@@ -10,17 +10,17 @@ class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
         if(!head)
-            return NULL;
-        ListNode *fast=head,*slow=head,*entry=head;
-        while(fast->next && fast->next->next){
+            return head;
+        ListNode *slow=head, *fast=head, *start=head;
+        while(fast->next&&fast->next->next){
             fast=fast->next->next;
             slow=slow->next;
             if(slow==fast){
-                while(entry!=slow){
+                while(start!=slow){
+                    start=start->next;
                     slow=slow->next;
-                    entry=entry->next;
                 }
-                return entry;
+                return slow;
             }
         }
         return NULL;
