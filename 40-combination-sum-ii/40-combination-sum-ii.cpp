@@ -6,7 +6,7 @@ public:
             return;
         }
         for(int i=ind;i<candidates.size();i++){
-            if(i>ind&&candidates[i]==candidates[i-1]) continue;
+            if(i!=ind&&candidates[i]==candidates[i-1]) continue;
             if(candidates[i]>target)break;
             res.push_back(candidates[i]);
             solve(ans,res,candidates,target-candidates[i],i+1);
