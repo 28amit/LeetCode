@@ -11,19 +11,19 @@
  */
 class Solution {
 public:
-    TreeNode* lastRight(TreeNode* link){
-        if(!link->right)
-            return link;
-        return lastRight(link->right);
+    TreeNode* lastRight(TreeNode* node){
+        if(!node->right)
+            return node;
+        return lastRight(node->right);
     }
-    TreeNode* solve(TreeNode* node){
+    TreeNode* solve( TreeNode* node){
         if(!node->left)
             return node->right;
         if(!node->right)
             return node->left;
-        TreeNode *tmp=node->right;
-        TreeNode *last=lastRight(node->left);
-        last->right=tmp;
+        TreeNode* tmp=node->right;
+        TreeNode* hh=lastRight(node->left);
+        hh->right=tmp;
         return node->left;
     }
     TreeNode* deleteNode(TreeNode* root, int key) {
@@ -31,7 +31,7 @@ public:
             return root;
         if(root->val==key)
             return solve(root);
-        TreeNode *curr=root;
+        TreeNode* curr=root;
         while(curr){
             if(curr->val>key){
                 if(curr->left&&curr->left->val==key){
